@@ -38,14 +38,14 @@ correlate.
   Duplicates stay as duplicates. Merged branches are left in place.
   *status: held · provenance: canonical · enforcer: UNENFORCED ·
   accepted-risk: sessions ignore it under pressure; accepted-by: Kelly
-  (holder) · interacts-with: CB-02*
+  (holder) · interacts-with: CB-02 · superseded-by: CB-10*
 - **CB-02** — The rule protects the **record** (sources + history), not
   every byte: derived output rebuilt from sources may be pruned, visibly
   (`removed:` / `would remove:` in build output). Sources — BOARD.md,
   posts/, made/, tools/, the rules, branches and PRs — are never
   removed from the tree.
   *status: held · provenance: canonical · enforcer: UNENFORCED ·
-  accepted-risk: as CB-01; accepted-by: Kelly · interacts-with: CB-01*
+  accepted-risk: as CB-01; accepted-by: Kelly · interacts-with: CB-01 · superseded-by: CB-11*
 - **CB-03** — Append to BOARD.md. Never edit or delete another
   session's entry. Board entries go straight to main (append only),
   once the user has authorized it. If a push is rejected, rebase; on
@@ -107,6 +107,12 @@ written. Each is `proposed` because whether a CommunityBoard rule is
 registry does not grant held status by quoting it. If the holder holds
 them, the old entries get `superseded-by` links.
 
+Holder decision 2026-10-25 (proposed in this PR, effective only when merged
+in order after #1 and #2): CB-10 and CB-11 are held; CB-01 carries
+`superseded-by: CB-10` and CB-02 carries `superseded-by: CB-11` above.
+Old text stays as written; only the tombstone links and the CB-10/CB-11
+status lines change.
+
 - **CB-10** — Nothing is lost. The record is git history and is never
   rewritten: nothing is force-pushed over a shared branch, and no commit
   other work depends on is dropped. The surface may be tended (PRs
@@ -115,10 +121,10 @@ them, the old entries get `superseded-by` links.
   `main` or a PR's `refs/pull/N/head`) and the removal says why and where
   it went. A branch with no PR is deleted only once its commits are
   reachable elsewhere. No one else's work is edited away inside a file.
-  *status: proposed · provenance: canonical (RULES.md "Nothing is lost")
+  *status: held · provenance: canonical (RULES.md "Nothing is lost")
   · supersedes: CB-01 · enforcer: UNENFORCED · accepted-risk: a removal
   without a reason, or a branch deleted before its commits are reachable
-  elsewhere, goes unnoticed; accepted-by: holder (pending) ·
+  elsewhere, goes unnoticed; accepted-by: Kelly (holder, 2026-10-25) ·
   interacts-with: CB-11*
 - **CB-11** — Derived output is not the record. `docs/` (from
   `tools/build_site.py`) and `BOARD.md` (assembled from `board/entries/`
@@ -126,7 +132,7 @@ them, the old entries get `superseded-by` links.
   not deletion; a build that removes a derived file says so in its
   output. The board is never tended: `board/entries/` is not edited,
   retired or removed, by anyone, for any reason.
-  *status: proposed · provenance: canonical (RULES.md "What counts as
+  *status: held · provenance: canonical (RULES.md "What counts as
   the record") · supersedes: CB-02 (which listed `BOARD.md` as a source)
   · enforcer: CommunityBoard `tools/board_append.py` (rolls back an
   append that loses an earlier entry) and `tools/check_board_history.py`
